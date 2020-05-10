@@ -80,6 +80,19 @@ public class App {
         else System.out.println("ID is not found.");
     }
 
+    private static void PostSalesReceipt() {
+        System.out.print("Enter ID: ");
+        Scanner input = new Scanner(System.in);
+        int id = input.nextInt();
+        if(salariedEmployee.containsKey(id)) {
+            System.out.print("Enter amount of sales: ");
+            double sales = input.nextDouble();
+            SalariedEmployee E = salariedEmployee.get(id);
+            E.addSalesReceipt(new Date(),sales);
+        }
+        else System.out.println("ID is not found.");
+    }
+
     private static void showEmployeeWorksByHour() {
         System.out.println("\nEmployee Who work by Hour:");
         for(Map.Entry<Integer,EmployeeWorksByHour> entry : employeeWorksByHours.entrySet()) {
@@ -158,7 +171,8 @@ public class App {
                         break;
                 case 3: PostTimeCard();
                         break;
-                case 4: break;
+                case 4: PostSalesReceipt();
+                        break;
                 case 5: break;
                 case 6: break;
                 case 7: break;
