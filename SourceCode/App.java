@@ -5,6 +5,8 @@ public class App {
     private static Map<Integer,EmployeeWorksByHour> employeeWorksByHours = new HashMap<>();
     private static Map<Integer,SalariedEmployee> salariedEmployee = new HashMap<>();
     static int ID=0;
+    static  double initialWeeklyDues = 200;
+    static  double initialServiceCharges = 100;
 
     private static void InsertEmployee() {
         Scanner input = new Scanner(System.in);
@@ -93,6 +95,33 @@ public class App {
         else System.out.println("ID is not found.");
     }
 
+    private static void PostUnionMembership() {
+        System.out.print("Enter ID: ");
+        Scanner input = new Scanner(System.in);
+        int id = input.nextInt();
+        if(employeeWorksByHours.containsKey(id)) {
+            EmployeeWorksByHour E = employeeWorksByHours.get(id);
+            if(!E.isUnionMember()) {
+                E.setUnionMember(true);
+                E.setWeeklyDues(initialWeeklyDues);
+                E.setServiceCharges(initialServiceCharges);
+                System.out.println("Now a Union Member.");
+            }
+            else System.out.println("Already a Union Member.");
+        }
+        else if(salariedEmployee.containsKey(id)) {
+            SalariedEmployee E = salariedEmployee.get(id);
+            if(!E.isUnionMember()) {
+                E.setUnionMember(true);
+                E.setWeeklyDues(initialWeeklyDues);
+                E.setServiceCharges(initialServiceCharges);
+                System.out.println("Now a Union Member.");
+            }
+            else System.out.println("Already a Union Member.");
+        }
+        else System.out.println("ID is not found.");
+    }
+
     private static void showEmployeeWorksByHour() {
         System.out.println("\nEmployee Who work by Hour:");
         for(Map.Entry<Integer,EmployeeWorksByHour> entry : employeeWorksByHours.entrySet()) {
@@ -173,7 +202,8 @@ public class App {
                         break;
                 case 4: PostSalesReceipt();
                         break;
-                case 5: break;
+                case 5: PostUnionMembership();
+                        break;
                 case 6: break;
                 case 7: break;
                 case 8: break;

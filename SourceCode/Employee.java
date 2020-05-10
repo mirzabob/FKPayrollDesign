@@ -7,12 +7,24 @@ public class Employee {
     private double WeeklyDues;
     private double ServiceCharges;
     protected double CreditAmount;
+
     Employee(String name, int id, int age, String paymentMethod) {
         Name = name;
         Id = id;
         Age = age;
         PaymentMethod = paymentMethod;
     }
+
+    public void setUnionMember(boolean value) {
+        UnionMember = value;
+    }
+    public void setWeeklyDues(double weeklyDues) {
+        WeeklyDues = weeklyDues;
+    }
+    public void setServiceCharges(double serviceCharges) {
+        ServiceCharges = serviceCharges;
+    }
+
     public String getName() {
         return Name;
     }
@@ -27,5 +39,8 @@ public class Employee {
     }
     public double getCreditAmount() {
         return CreditAmount;
+    }
+    public boolean isUnionMember() {
+        return UnionMember;
     }
 }
