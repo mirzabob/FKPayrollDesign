@@ -231,6 +231,64 @@ public class App {
         else System.out.println("ID is not found.");
     }
 
+    private static void PayEmployeeWorksByHour(int dayOfWeek) {
+        if(dayOfWeek != 6) return;
+        for(Map.Entry<Integer,EmployeeWorksByHour> entry : employeeWorksByHours.entrySet()) {
+            int ID = entry.getKey();
+            EmployeeWorksByHour E = entry.getValue();
+
+            System.out.println("Name: "+ E.getName());
+            System.out.println("ID: "+ E.getId());
+            System.out.println("Age: "+ E.getAge());
+            System.out.println("Payment Method: "+ E.getPaymentMethod());
+            System.out.println("Credit Amount: "+ E.getCreditAmount());
+            if(E.isTimeCardsEmpty()) System.out.println("No Time Cards.");
+            else {
+                System.out.println("Time cards:");
+                E.showEntries();
+            }
+            E.resetCreditAmount();
+            E.resetTimeCards();
+        }
+    }
+
+    private static void PaySalariedEmployee(int dayOfMonth, int lastDayOfMonth, int dayOfWeek) {
+        for(Map.Entry<Integer,SalariedEmployee> entry : salariedEmployee.entrySet()) {
+            int ID = entry.getKey();
+            SalariedEmployee E = entry.getValue();
+            boolean predicate = (dayOfMonth == lastDayOfMonth) || (dayOfWeek == 6);
+            if(predicate) {
+                System.out.println("Name: " + E.getName());
+                System.out.println("ID: " + E.getId());
+                System.out.println("Age: " + E.getAge());
+                System.out.println("Payment Method: " + E.getPaymentMethod());
+                if (dayOfMonth == lastDayOfMonth) {
+                    System.out.println("Credit Amount: " + E.getCreditAmount());
+                    E.resetCreditAmount();
+                }
+                System.out.print("Total Commission Amount: ");
+                if (dayOfWeek == 6) {
+                    System.out.println(E.getTotalCommissionAmount());
+                    if (E.isSalesReceiptEmpty()) System.out.println("No Sales Receipts.");
+                    else {
+                        System.out.println("Sales Receipts:");
+                        E.showEntries();
+                    }
+                    E.resetTotalCommissionAmount();
+                } else System.out.println("0");
+            }
+        }
+    }
+
+    private static void RunPayroll() {
+        Calendar calender = Calendar.getInstance();
+        int lastDateOfMonth = calender.getActualMaximum(Calendar.DATE);
+        int dayOfMonth = calender.get(Calendar.DAY_OF_MONTH);
+        int dayOfWeek = calender.get(Calendar.DAY_OF_WEEK);
+        PayEmployeeWorksByHour(dayOfWeek);
+        PaySalariedEmployee(dayOfMonth,lastDateOfMonth,dayOfWeek);
+    }
+
     private static void showEmployeeWorksByHour() {
         System.out.println("\nEmployee Who work by Hour:");
         for(Map.Entry<Integer,EmployeeWorksByHour> entry : employeeWorksByHours.entrySet()) {
@@ -316,7 +374,8 @@ public class App {
                         break;
                 case 6: ChangeEmployeeDetails();
                         break;
-                case 7: break;
+                case 7: RunPayroll();
+                        break;
                 case 8: break;
                 case 9: ShowDetails();
                         break;

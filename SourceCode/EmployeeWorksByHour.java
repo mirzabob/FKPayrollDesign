@@ -27,13 +27,16 @@ public class EmployeeWorksByHour extends Employee{
     public void setHourRate(double hourRate) {
         HourRate = hourRate;
     }
+    public void resetTimeCards() {
+        TimeCards.clear();
+    }
 
     public boolean isTimeCardsEmpty() {
         return TimeCards.isEmpty();
     }
     public void showEntries() {
         for(Map.Entry<Date,Integer> entry : TimeCards.entrySet()) {
-            System.out.println(entry.getKey()+":"+entry.getValue());
+            System.out.println(entry.getKey()+" : "+entry.getValue());
         }
     }
 }

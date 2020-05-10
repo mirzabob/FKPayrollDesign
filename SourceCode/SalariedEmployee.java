@@ -25,6 +25,10 @@ public class SalariedEmployee extends Employee{
     void setCommissionRate(double commissionRate) {
         CommissionRate = commissionRate;
     }
+    void resetTotalCommissionAmount() {
+        TotalCommissionAmount = 0;
+        SalesReceipt.clear();
+    }
 
     boolean isSalesReceiptEmpty() {
         return  SalesReceipt.isEmpty();
@@ -34,7 +38,7 @@ public class SalariedEmployee extends Employee{
     }
     void showEntries() {
         for(Map.Entry<Date,Double> entry : SalesReceipt.entrySet()) {
-            System.out.println(entry.getKey()+":"+entry.getValue());
+            System.out.println(entry.getKey()+" : "+entry.getValue());
         }
     }
 }

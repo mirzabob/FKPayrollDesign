@@ -24,6 +24,9 @@ public class Employee {
     public void setServiceCharges(double serviceCharges) {
         ServiceCharges = serviceCharges;
     }
+    public void resetCreditAmount() {
+        CreditAmount = 0;
+    }
 
     public String getName() {
         return Name;
@@ -38,7 +41,7 @@ public class Employee {
         return PaymentMethod;
     }
     public double getCreditAmount() {
-        return CreditAmount;
+        return CreditAmount-WeeklyDues-ServiceCharges;
     }
     public boolean isUnionMember() {
         return UnionMember;
