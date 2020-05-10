@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
 
@@ -68,6 +65,19 @@ public class App {
             System.out.println("Employee with ID " + id + " is deleted.");
         }
         else System.out.println("Employee with ID " + id + " is not found.");
+    }
+
+    private static void PostTimeCard() {
+        System.out.print("Enter ID: ");
+        Scanner input = new Scanner(System.in);
+        int id = input.nextInt();
+        if(employeeWorksByHours.containsKey(id)) {
+            System.out.print("Enter number of hours worked: ");
+            int hours = input.nextInt();
+            EmployeeWorksByHour E = employeeWorksByHours.get(id);
+            E.addTimeCards(new Date(),hours);
+        }
+        else System.out.println("ID is not found.");
     }
 
     private static void showEmployeeWorksByHour() {
@@ -146,7 +156,8 @@ public class App {
                         break;
                 case 2: DeleteEmployee();
                         break;
-                case 3: break;
+                case 3: PostTimeCard();
+                        break;
                 case 4: break;
                 case 5: break;
                 case 6: break;
