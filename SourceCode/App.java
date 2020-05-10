@@ -54,6 +54,22 @@ public class App {
         }
     }
 
+    private static void DeleteEmployee() {
+        System.out.print("\nEnter ID of the Employee: ");
+        Scanner input = new Scanner(System.in);
+        int id = input.nextInt();
+
+        if(employeeWorksByHours.containsKey(id)) {
+            employeeWorksByHours.remove(id);
+            System.out.println("Employee with ID " + id + " is deleted.");
+        }
+        else if(salariedEmployee.containsKey(id)) {
+            salariedEmployee.remove(id);
+            System.out.println("Employee with ID " + id + " is deleted.");
+        }
+        else System.out.println("Employee with ID " + id + " is not found.");
+    }
+
     private static void showEmployeeWorksByHour() {
         System.out.println("\nEmployee Who work by Hour:");
         for(Map.Entry<Integer,EmployeeWorksByHour> entry : employeeWorksByHours.entrySet()) {
@@ -128,7 +144,8 @@ public class App {
                 case 1: ID++;
                         InsertEmployee();
                         break;
-                case 2: break;
+                case 2: DeleteEmployee();
+                        break;
                 case 3: break;
                 case 4: break;
                 case 5: break;
