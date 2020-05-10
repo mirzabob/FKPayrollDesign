@@ -26,7 +26,7 @@ public class EmployeeWorksByHour extends Employee{
     public boolean isTimeCardsEmpty() {
         return TimeCards.isEmpty();
     }
-    public void show() {
+    public void showEntries() {
         for(Map.Entry<Date,Integer> entry : TimeCards.entrySet()) {
             System.out.println(entry.getKey()+":"+entry.getValue());
         }

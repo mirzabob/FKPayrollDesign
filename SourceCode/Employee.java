@@ -3,6 +3,9 @@ public class Employee {
     private int Id;
     private int Age;
     private String PaymentMethod;
+    private boolean UnionMember;
+    private double WeeklyDues;
+    private double ServiceCharges;
     protected double CreditAmount;
     Employee(String name, int id, int age, String paymentMethod) {
         Name = name;
