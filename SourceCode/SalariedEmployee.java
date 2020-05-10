@@ -18,25 +18,25 @@ public class SalariedEmployee extends Employee{
         double hrs = Double.parseDouble(amount.toString());
         TotalCommissionAmount += CommissionRate*amount;
     }
-    void addSalesReceipt(Date date, Double amount) {
+    public void addSalesReceipt(Date date, Double amount) {
         SalesReceipt.put(date,amount);
         IncrementCommissionAmount(amount);
     }
-    void setCommissionRate(double commissionRate) {
+    public void setCommissionRate(double commissionRate) {
         CommissionRate = commissionRate;
     }
-    void resetTotalCommissionAmount() {
+    public void resetTotalCommissionAmount() {
         TotalCommissionAmount = 0;
         SalesReceipt.clear();
     }
 
-    boolean isSalesReceiptEmpty() {
+    public boolean isSalesReceiptEmpty() {
         return  SalesReceipt.isEmpty();
     }
-    double getTotalCommissionAmount() {
+    public double getTotalCommissionAmount() {
        return TotalCommissionAmount;
     }
-    void showEntries() {
+    public void showEntries() {
         for(Map.Entry<Date,Double> entry : SalesReceipt.entrySet()) {
             System.out.println(entry.getKey()+" : "+entry.getValue());
         }
