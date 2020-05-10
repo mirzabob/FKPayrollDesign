@@ -122,6 +122,115 @@ public class App {
         else System.out.println("ID is not found.");
     }
 
+    private static void changeEmployeeWorksByHour(Integer id) {
+        EmployeeWorksByHour E = employeeWorksByHours.get(id);
+        Scanner input = new Scanner(System.in);
+        int option;
+        do{
+            System.out.println("1. Leave Union");
+            System.out.println("2. Change Weekly Dues");
+            System.out.println("3. Change Service Charges");
+            System.out.println("4. Change Hour Rate");
+            System.out.println("5. Exit");
+            System.out.print("Enter your Choice: ");
+            option = input.nextInt();
+            switch(option) {
+                case 1: if(E.isUnionMember()) {
+                            E.setUnionMember(false);
+                            E.setWeeklyDues(0);
+                            E.setServiceCharges(0);
+                            System.out.println("You are not a member anymore.");
+                        }
+                        else System.out.println("Not a Union Member;");
+                        break;
+                case 2: if(E.isUnionMember()) {
+                            System.out.print("Enter new Weekly Dues: ");
+                            double newWeeklyDues = input.nextDouble();
+                            E.setWeeklyDues(newWeeklyDues);
+                            System.out.println("Updated Weekly Dues.");
+                        }
+                        else System.out.println("Not a Union Member;");
+                        break;
+                case 3: if(E.isUnionMember()) {
+                            System.out.print("Enter new Service Charges: ");
+                            double newServiceCharges = input.nextDouble();
+                            E.setServiceCharges(newServiceCharges);
+                            System.out.println("Updated Service Charges.");
+                        }
+                        else System.out.println("Not a Union Member;");
+                        break;
+                case 4: System.out.print("Enter new Hour Rate: ");
+                        double newHourRate = input.nextDouble();
+                        E.setHourRate(newHourRate);
+                        System.out.println("Updated Hour Rate.");
+                        break;
+                case 5: break;
+                default: System.out.println("Wrong Choice!!!");
+            }
+        }while(option!=5);
+    }
+
+    private static void changeSalariedEmployee(Integer id) {
+        SalariedEmployee E = salariedEmployee.get(id);
+        Scanner input = new Scanner(System.in);
+        int option;
+        do{
+            System.out.println("1. Leave Union");
+            System.out.println("2. Change Weekly Dues");
+            System.out.println("3. Change Service Charges");
+            System.out.println("4. Change Commission Rate");
+            System.out.println("5. Exit");
+            System.out.print("Enter your Choice: ");
+            option = input.nextInt();
+            switch(option) {
+                case 1: if(E.isUnionMember()) {
+                            E.setUnionMember(false);
+                            E.setWeeklyDues(0);
+                            E.setServiceCharges(0);
+                            System.out.println("You are not a member anymore.");
+                        }
+                        else System.out.println("Not a Union Member;");
+                            break;
+                case 2: if(E.isUnionMember()) {
+                            System.out.print("Enter new Weekly Dues: ");
+                            double newWeeklyDues = input.nextDouble();
+                            E.setWeeklyDues(newWeeklyDues);
+                            System.out.println("Updated Weekly Dues.");
+                        }
+                        else System.out.println("Not a Union Member;");
+                            break;
+                case 3: if(E.isUnionMember()) {
+                            System.out.print("Enter new Service Charges: ");
+                            double newServiceCharges = input.nextDouble();
+                            E.setServiceCharges(newServiceCharges);
+                            System.out.println("Updated Service Charges.");
+                        }
+                        else System.out.println("Not a Union Member;");
+                            break;
+                case 4: System.out.print("Enter new Commission Rate: ");
+                        double newCommissionRate = input.nextDouble();
+                        E.setCommissionRate(newCommissionRate);
+                        System.out.println("Updated Commission Rate.");
+                        break;
+                case 5: break;
+                default: System.out.println("Wrong Choice!!!");
+            }
+        }while(option!=5);
+    }
+
+    private static void ChangeEmployeeDetails() {
+        System.out.print("Enter ID: ");
+        Scanner input = new Scanner(System.in);
+        int id = input.nextInt();
+        if(employeeWorksByHours.containsKey(id)) {
+            changeEmployeeWorksByHour(id);
+        }
+        else if(salariedEmployee.containsKey(id)) {
+            changeSalariedEmployee(id);
+        }
+        else System.out.println("ID is not found.");
+    }
+
     private static void showEmployeeWorksByHour() {
         System.out.println("\nEmployee Who work by Hour:");
         for(Map.Entry<Integer,EmployeeWorksByHour> entry : employeeWorksByHours.entrySet()) {
@@ -152,6 +261,7 @@ public class App {
             System.out.println("Age: " + E.getAge());
             System.out.println("Payment Method: " + E.getPaymentMethod());
             System.out.println("Credit Amount: " + E.getCreditAmount());
+            System.out.println("Tota Commission Amount: " +  E.getTotalCommissionAmount());
             if (E.isSalesReceiptEmpty()) System.out.println("No Sales Receipts.");
             else {
                 System.out.println("Sales Receipts:");
@@ -204,7 +314,8 @@ public class App {
                         break;
                 case 5: PostUnionMembership();
                         break;
-                case 6: break;
+                case 6: ChangeEmployeeDetails();
+                        break;
                 case 7: break;
                 case 8: break;
                 case 9: ShowDetails();

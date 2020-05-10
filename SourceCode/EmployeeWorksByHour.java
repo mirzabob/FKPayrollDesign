@@ -10,6 +10,7 @@ public class EmployeeWorksByHour extends Employee{
         HourRate = hourRate;
         TimeCards = new HashMap<>();
     }
+
     private void incrementCreditAmount(Integer hours) {
         int hrs = Integer.parseInt(hours.toString());
         if(hrs > 8) {
@@ -23,6 +24,10 @@ public class EmployeeWorksByHour extends Employee{
         TimeCards.put(date,hours);
         incrementCreditAmount(hours);
     }
+    public void setHourRate(double hourRate) {
+        HourRate = hourRate;
+    }
+
     public boolean isTimeCardsEmpty() {
         return TimeCards.isEmpty();
     }

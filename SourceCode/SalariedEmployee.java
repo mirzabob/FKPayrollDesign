@@ -22,8 +22,15 @@ public class SalariedEmployee extends Employee{
         SalesReceipt.put(date,amount);
         IncrementCommissionAmount(amount);
     }
+    void setCommissionRate(double commissionRate) {
+        CommissionRate = commissionRate;
+    }
+
     boolean isSalesReceiptEmpty() {
         return  SalesReceipt.isEmpty();
+    }
+    double getTotalCommissionAmount() {
+       return TotalCommissionAmount;
     }
     void showEntries() {
         for(Map.Entry<Date,Double> entry : SalesReceipt.entrySet()) {
